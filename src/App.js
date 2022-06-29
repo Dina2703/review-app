@@ -3,11 +3,22 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import "./App.css";
 import SignIn from "./pages/SignIn";
+import { auth } from "./firebase-config";
+import { signOut } from "firebase/auth";
 
 function App() {
+  const logout = async () => {
+    await signOut(auth);
+  };
   return (
     <div className="App">
-      <div className="App-header">Review App</div>
+      <div className="App-header">
+        <h3>Review App</h3>
+        <button style={{ position: "absolute", right: "5%" }} onClick={logout}>
+          SignOut
+        </button>
+      </div>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp />} />

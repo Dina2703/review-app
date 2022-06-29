@@ -12,7 +12,7 @@ function Home() {
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome {userLoggedIn.email}</p>
+          <p className="pageHeader">Welcome {userLoggedIn?.email}</p>
         </header>
 
         <Link to="/sign-up">
