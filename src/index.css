@@ -47,8 +47,7 @@ form {
 .input,
 .passwordInput,
 .emailInput,
-.nameInput,
-.textarea {
+.nameInput {
   box-shadow: rgba(0, 0, 0, 0.11);
   border: none;
   background: #ffffff;

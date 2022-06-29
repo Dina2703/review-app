@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase-config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import visibilityIcon from "../assets/visibilityIcon.svg";
 import { ReactComponent as ArrowRightIcon } from "../assets/keyboardArrowRightIcon.svg";
 
@@ -14,18 +16,37 @@ function SignIn() {
   const navigate = useNavigate();
   const { email, password, name } = formData;
 
-  const onChange = () => {
-    console.log("testing form fields");
+  const onChange = (e) => {
+    setformData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
   };
 
+  const onSubmit = async (e) => {
+    // console.log(formData);
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredential);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome to Sign In Page</p>
+          <p className="pageHeader">Welcome</p>
         </header>
         <main>
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               type="text"
               className="nameInput"
@@ -65,11 +86,8 @@ function SignIn() {
             </Link>
 
             <div className="signUpBar">
-              <p className="signUpText">Sign Up</p>
-              <button
-                className="signUpButton"
-                onClick={() => navigate("/sign-up")}
-              >
+              <p className="signUpText">Sign In</p>
+              <button className="signUpButton">
                 <ArrowRightIcon fill="#555" width="34px" height="34px" />
               </button>
             </div>

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import "./App.css";
@@ -13,7 +13,10 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-        <h3>Review App</h3>
+        <Link to="/">
+          <h3>Review App</h3>
+        </Link>
+
         <button style={{ position: "absolute", right: "5%" }} onClick={logout}>
           SignOut
         </button>
