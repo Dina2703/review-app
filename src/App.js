@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
@@ -7,25 +8,33 @@ import { auth } from "./firebase-config";
 import { signOut } from "firebase/auth";
 
 function App() {
+  const [isLogged, setLogged] = useState(true);
   const logout = async () => {
     await signOut(auth);
   };
+
   return (
     <div className="App">
-      <div className="App-header">
-        <Link to="/">
+      <nav className="App-header">
+        <Link to="/" className="title">
           <h3>Review App</h3>
         </Link>
 
-        <button style={{ position: "absolute", right: "5%" }} onClick={logout}>
-          SignOut
-        </button>
-      </div>
+        {isLogged && (
+          <button
+            style={{ position: "absolute", right: "5%" }}
+            onClick={logout}
+            className="signOut"
+          >
+            SignOut
+          </button>
+        )}
+      </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp setLogged={setLogged} />} />
+        <Route path="/sign-in" element={<SignIn setLogged={setLogged} />} />
       </Routes>
     </div>
   );

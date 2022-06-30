@@ -48,7 +48,7 @@ form {
 .passwordInput,
 .emailInput,
 .nameInput {
-  box-shadow: rgba(0, 0, 0, 0.11);
+  box-shadow: rgba(131, 8, 8, 0.11);
   border: none;
   background: #ffffff;
   border-radius: 3rem;
@@ -96,6 +96,7 @@ form {
 .signInButton,
 .signUpButton,
 .signInText,
-.signUpText {
+.signUpText,
+.signOut {
   cursor: pointer;
 }

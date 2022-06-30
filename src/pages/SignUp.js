@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase-config";
 import visibilityIcon from "../assets/visibilityIcon.svg";
 import { ReactComponent as ArrowRightIcon } from "../assets/keyboardArrowRightIcon.svg";
 
-function SignUp() {
+function SignUp({ setLogged }) {
   const [showPassword, setshowPassword] = useState(false);
 
   const [formData, setformData] = useState({
@@ -34,6 +34,11 @@ function SignUp() {
         password
       );
       console.log(userCredential);
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      setLogged(true);
       setformData({ name: "", email: "", password: "" });
       navigate("/");
     } catch (error) {
@@ -45,7 +50,7 @@ function SignUp() {
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome</p>
+          <p className="pageHeader">Sign Up</p>
         </header>
         <main>
           <form onSubmit={onSubmit}>

@@ -4,7 +4,7 @@ import { auth } from "../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 
 function Home() {
-  const [userLoggedIn, setUserLoggedIn] = useState("");
+  const [userLoggedIn, setUserLoggedIn] = useState(null);
   onAuthStateChanged(auth, (currentUser) => {
     setUserLoggedIn(currentUser);
   });
@@ -12,16 +12,19 @@ function Home() {
     <>
       <div className="pageContainer">
         <header>
-          <p className="pageHeader">Welcome {userLoggedIn?.email}</p>
+          <p className="pageHeader">Welcome {userLoggedIn?.displayName}</p>
         </header>
-
-        <Link to="/sign-up">
-          <div>Sign Up</div>
-        </Link>
-        <Link to="/sign-in">
-          <div>Sign In</div>
-        </Link>
       </div>
+      {!userLoggedIn && (
+        <div>
+          <Link to="/sign-up">
+            <div>Sign Up</div>
+          </Link>
+          <Link to="/sign-in">
+            <div>Sign In</div>
+          </Link>
+        </div>
+      )}
     </>
   );
 }
