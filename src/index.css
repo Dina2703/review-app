@@ -100,3 +100,37 @@ form {
 .signOut {
   cursor: pointer;
 }
+
+.review-box {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.review-box button {
+  padding: 0.5rem 0;
+}
+
+.review {
+  border: none;
+  background-color: rgb(38, 73, 103);
+  padding: 15px 30px;
+  font-size: 40px;
+  font-family: serif;
+  border-radius: 8px;
+}
+
+.review:hover {
+  background-color: rgb(86, 126, 162);
+}
+
+.review a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.review a:hover {
+  color: black;
+}

@@ -16,7 +16,8 @@ function Home() {
           <p className="pageHeader">Welcome {userLoggedIn?.displayName}</p>
         </header>
       </div>
-      {!userLoggedIn && (
+
+      {!userLoggedIn ? (
         <div>
           <Link to="/sign-up">
             <div>Sign Up</div>
@@ -25,6 +26,10 @@ function Home() {
             <div>Sign In</div>
           </Link>
         </div>
+      ) : (
+        <button className="review">
+          <Link to="/create-review">Create Review</Link>
+        </button>
       )}
     </>
   );

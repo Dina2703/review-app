@@ -6,6 +6,7 @@ import "./App.css";
 import SignIn from "./pages/SignIn";
 import { auth } from "./firebase-config";
 import { signOut } from "firebase/auth";
+import CreateReview from "./pages/CreateReview";
 
 function App() {
   const [isLogged, setLogged] = useState(true);
@@ -39,6 +40,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp setLogged={setLogged} />} />
         <Route path="/sign-in" element={<SignIn setLogged={setLogged} />} />
+        <Route path="/create-review" element={<CreateReview />} />
       </Routes>
     </div>
   );
