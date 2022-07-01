@@ -8,6 +8,7 @@ function Home() {
   onAuthStateChanged(auth, (currentUser) => {
     setUserLoggedIn(currentUser);
   });
+
   return (
     <>
       <div className="pageContainer">

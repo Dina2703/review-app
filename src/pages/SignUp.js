@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase-config";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../firebase-config";
 import visibilityIcon from "../assets/visibilityIcon.svg";
 import { ReactComponent as ArrowRightIcon } from "../assets/keyboardArrowRightIcon.svg";
 
@@ -34,12 +36,18 @@ function SignUp({ setLogged }) {
         password
       );
       console.log(userCredential);
-
+      const user = userCredential.user;
       updateProfile(auth.currentUser, {
         displayName: name,
       });
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      console.log(auth);
       setLogged(true);
-      setformData({ name: "", email: "", password: "" });
+      localStorage.setItem("isLogged", true);
+      // setformData({ name: "", email: "", password: "" });
       navigate("/");
     } catch (error) {
       console.log(error.message);

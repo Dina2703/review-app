@@ -9,8 +9,12 @@ import { signOut } from "firebase/auth";
 
 function App() {
   const [isLogged, setLogged] = useState(true);
+
   const logout = async () => {
     await signOut(auth);
+    localStorage.clear();
+    setLogged(false);
+    window.location.pathname = "/";
   };
 
   return (
