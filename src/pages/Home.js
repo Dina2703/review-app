@@ -27,9 +27,14 @@ function Home() {
           </Link>
         </div>
       ) : (
-        <button className="review">
-          <Link to="/create-review">Create Review</Link>
-        </button>
+        <>
+          <button className="review">
+            <Link to="/create-review">Create Review</Link>
+          </button>
+          <button className="review">
+            <Link to="/my-reviews">Reviews</Link>
+          </button>
+        </>
       )}
     </>
   );

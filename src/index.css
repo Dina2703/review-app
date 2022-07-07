@@ -119,6 +119,8 @@ form {
   font-size: 40px;
   font-family: serif;
   border-radius: 8px;
+  margin: 0 10px;
+  width: 400px;
 }
 
 .review:hover {
@@ -133,4 +135,20 @@ form {
 
 .review a:hover {
   color: black;
+}
+
+.review-block {
+  position: relative;
+  width: 50%;
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgb(81, 64, 64);
+}
+
+.deleteReview {
+  position: absolute;
+  right: 20px;
 }

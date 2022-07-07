@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase-config";
-import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import visibilityIcon from "../assets/visibilityIcon.svg";
 import { ReactComponent as ArrowRightIcon } from "../assets/keyboardArrowRightIcon.svg";
 
-function SignIn() {
+function SignIn({ setAuth }) {
   const [showPassword, setshowPassword] = useState(false);
   const [formData, setformData] = useState({
     name: "",
@@ -33,7 +33,8 @@ function SignIn() {
         password
       );
       console.log(userCredential);
-
+      localStorage.setItem("isAuth", true);
+      setAuth(true);
       navigate("/");
     } catch (error) {
       console.log(error.message);

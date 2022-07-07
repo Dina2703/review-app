@@ -7,7 +7,7 @@ import { db } from "../firebase-config";
 import visibilityIcon from "../assets/visibilityIcon.svg";
 import { ReactComponent as ArrowRightIcon } from "../assets/keyboardArrowRightIcon.svg";
 
-function SignUp({ setLogged }) {
+function SignUp({ setAuth }) {
   const [showPassword, setshowPassword] = useState(false);
 
   const [formData, setformData] = useState({
@@ -44,9 +44,9 @@ function SignUp({ setLogged }) {
       delete formDataCopy.password;
 
       await setDoc(doc(db, "users", user.uid), formDataCopy);
-      console.log(auth);
-      setLogged(true);
-      localStorage.setItem("isLogged", true);
+      // console.log(auth);
+      localStorage.setItem("isAuth", true);
+      setAuth(true);
       // setformData({ name: "", email: "", password: "" });
       navigate("/");
     } catch (error) {

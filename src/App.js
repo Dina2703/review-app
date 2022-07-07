@@ -7,14 +7,15 @@ import SignIn from "./pages/SignIn";
 import { auth } from "./firebase-config";
 import { signOut } from "firebase/auth";
 import CreateReview from "./pages/CreateReview";
+import MyReviews from "./pages/MyReviews";
 
 function App() {
-  const [isLogged, setLogged] = useState(true);
+  const [isAuth, setAuth] = useState(localStorage.getItem("isAuth"));
 
   const logout = async () => {
     await signOut(auth);
     localStorage.clear();
-    setLogged(false);
+    setAuth(false);
     window.location.pathname = "/";
   };
 
@@ -25,7 +26,7 @@ function App() {
           <h3>Review App</h3>
         </Link>
 
-        {isLogged && (
+        {isAuth && (
           <button
             style={{ position: "absolute", right: "5%" }}
             onClick={logout}
@@ -38,9 +39,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<SignUp setLogged={setLogged} />} />
-        <Route path="/sign-in" element={<SignIn setLogged={setLogged} />} />
+        <Route path="/sign-up" element={<SignUp setAuth={setAuth} />} />
+        <Route path="/sign-in" element={<SignIn setAuth={setAuth} />} />
         <Route path="/create-review" element={<CreateReview />} />
+        <Route path="/my-reviews" element={<MyReviews isAuth={isAuth} />} />
       </Routes>
     </div>
   );
